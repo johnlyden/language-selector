@@ -1,0 +1,121 @@
+@import "compass/css3";
+
+
+$list_opacity: .99;
+$border_radius: 2px;
+$width: 320px;
+
+/* STYLES */
+body {
+  background: #ecece7;
+}
+
+
+section#content {
+  width: $width;
+  position: fixed;
+  left: 50%;
+  top: 50px;
+  margin-left: -150px;
+  text-align: center;
+}
+
+div.dropdown {
+  text-align: left;
+  font-size: 0.9em;
+  color: rgb(240, 240, 240);
+  width: inherit;
+
+  &.closed {
+    ul {
+      margin-top: 0px;
+      li {
+        margin-top: -40px;
+        height: 0px;
+      }
+    }
+    div.title:after {
+      margin-top: -14px;
+      @include transform(rotate(0deg));
+    }
+  }
+
+  div.title {
+    width: 100%;
+    height: 40px;
+    border: 1px solid rgba(25,25,25,0.3);
+    padding: 12px;
+    cursor: pointer;
+    background: #393d41;
+    color: #a5a5a6;
+    @include box-sizing("border-box");
+    @include border-radius($border_radius);
+    @include box-shadow(0px 1px 0px 0px rgba(0,0,0,0.3), 0px 2px 6px rgba(0,0,0,0.3));
+
+    &:after {
+      display: block;
+      content: "▾";
+      position: absolute;
+      right: 20px;
+      margin-top: -12px;
+      @include transform(rotate(180deg));
+    }
+  }
+
+  ul {
+    overflow: hidden;
+    @include transition(margin-top 1s);
+    @include box-sizing("border-box");
+    @include box-shadow(0px 0px 0px 0px rgba(0,0,0,0.3), 0px 6px 16px rgba(0,0,0,0.3));
+    @include border-radius(0px 0px $border_radius $border_radius);
+
+    li {
+      width: 100%;
+      padding: 12px;
+      vertical-align: top;
+      overflow: hidden;
+      cursor: pointer;
+      color: #999999;
+      @include transition(margin-top 0.5s, height 0.5s);
+      @include box-sizing("border-box");
+      background: #fbf9f8;
+
+      img {
+        width: 20px;
+      }
+
+      .flag {
+        padding-right: 20px;
+      }
+
+      .check {
+        padding-left: 80px;
+        color: #fbf9f8
+      }
+
+      &:first-child {
+        border-bottom: none;
+        border-top: none;
+      }
+      &:last-child {
+        border-top: none;
+        @include border-radius(0px 0px $border_radius $border_radius);
+      }
+      &:hover {
+        background: #4ebbf0;
+        color: #ffffff;
+      }
+      &:before {
+        content: " ";
+        display: inline-block;
+        position: relative;
+        margin-top: -12px;
+        margin-right: 10px;
+        width: 20px;
+        height: 40px;
+        @include opacity(0.7);
+        @include transition(all 0.5s);
+      }
+    }
+  }
+}
